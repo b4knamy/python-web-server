@@ -3,9 +3,6 @@ import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# ----------------------------
-# CONFIGURAÇÕES DO SERVIDOR
-# ----------------------------
 
 SERVER_HOST = '127.0.0.1'
 SERVER_PORT = 8000
