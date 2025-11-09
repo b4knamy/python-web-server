@@ -1,9 +1,7 @@
-from abc import ABC
-
 from core.http.response import JSONResponse
 
 
-class BaseError(ABC, Exception):
+class BaseError(Exception):
     message: str
     status: int
     trace_back: Exception
