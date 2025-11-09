@@ -3,6 +3,17 @@ import json
 
 
 class Response(ABC):
+    status_messages = {
+        200: "OK",
+        201: "Created",
+        204: "No Content",
+        400: "Bad Request",
+        401: "Unauthorized",
+        403: "Forbidden",
+        404: "Not Found",
+        405: "Method Not Allowed",
+        500: "Internal Server Error",
+    }
 
     def __init__(self, data, status=200, headers=None):
         self.data = data
@@ -21,19 +32,8 @@ class Response(ABC):
         return response.encode('utf-8')
 
     def get_status_line(self):
-        status_messages = {
-            200: "OK",
-            201: "Created",
-            204: "No Content",
-            400: "Bad Request",
-            401: "Unauthorized",
-            403: "Forbidden",
-            404: "Not Found",
-            405: "Method Not Allowed",
-            500: "Internal Server Error",
-        }
 
-        return f"HTTP/1.1 {self.status} {status_messages.get(self.status, 'Unknown')}"
+        return f"HTTP/1.1 {self.status} {self.status_messages.get(self.status, 'Unknown')}"
 
     def get_headers_line(self, body):
 
