@@ -59,6 +59,7 @@ class RequestResolver:
             return NotFoundError(
                 message="Controller not found",
                 action="Check the router registry"
+                is_internal=True
             )
 
         controller = controller_cls()
