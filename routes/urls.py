@@ -1,4 +1,5 @@
 
+from core.middlewares.throttle import throttle_middleware
 from core.router.router import router
 from controllers.index import IndexController
 
@@ -13,7 +14,8 @@ routes = [
         "path": "/about",
         "method": "GET",
         "controller": IndexController,
-        "function": 'about'
+        "function": 'about',
+        "middlewares": [throttle_middleware]
     }
 ]
 
