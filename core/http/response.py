@@ -1,3 +1,4 @@
+
 from abc import ABC, abstractmethod
 import json
 
@@ -12,6 +13,7 @@ class Response(ABC):
         403: "Forbidden",
         404: "Not Found",
         405: "Method Not Allowed",
+        429: "Too Many Attempts",
         500: "Internal Server Error",
     }
 
@@ -54,6 +56,9 @@ class Response(ABC):
     @abstractmethod
     def get_body(self):
         pass
+
+    def insert_headers(self, extra_headers: dict):
+        self.headers.update(extra_headers)
 
 
 class JSONResponse(Response):
