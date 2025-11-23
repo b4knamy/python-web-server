@@ -1,14 +1,21 @@
-class Router:
-    urls_path = []
+from core.router.middlewares import global_middlewares
 
-    def register(self, routes):
-        for route in routes:
-            self.urls_path.append(route)
+
+class Router:
+    routes = []
+    middlewares = [middlewares for middlewares in global_middlewares]
+
+    def register(self, incoming_routes):
+        for route in incoming_routes:
+            self.routes.append(route)
+
+    def add_middleware(self, func):
+        self.middlewares.append(func)
 
     def get(self, path: str):
-        for url in self.urls_path:
-            if url["path"] == path:
-                return url
+        for route in self.routes:
+            if route["path"] == path:
+                return route
 
 
 router = Router()
